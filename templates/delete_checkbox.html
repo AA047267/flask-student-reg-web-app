@@ -1,0 +1,140 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <title>List</title>  
+</head> 
+
+<style>
+    input[type=submit] {
+        background-color: rgb(223, 83, 32);
+        border: none;
+        border-radius: 10px;
+        color: white;
+        padding: 16px 32px;
+        text-decoration: none;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        margin: 4px 2px;
+        margin-left: 43%;
+        cursor: pointer;
+    }
+    input[type=submit]:hover {
+        background-color: red;
+        font-size: 100%;
+
+    }
+
+
+    body {
+        background-image: url("../static/background.jpg");
+    }   
+    table {
+      border-collapse: collapse;
+      width: 50%;
+      margin-left: 25%;
+      margin-top: 7%;
+    }
+    
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr{
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    
+    tr:nth-child(even){background-color: #f2f2f2}
+    tr:hover:nth-child(odd) {background-color: dimgrey;}
+    tr:hover:nth-child(even) {background-color: dimgrey;}
+    th {
+      background-color: #4CAF50;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    h3{
+        color: slategrey;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 300%;
+        margin-left: 30%;
+    }
+    .button {
+        background-color: slategrey;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        border-radius: 10px;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 50px 2px;
+        margin-left: 43%;
+        cursor: pointer;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .button:hover{
+        background-color: #111;
+        font-size: 110%;
+    }
+
+    .delete-red{
+        background-color: brown;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 50px 2px;
+        margin-left: 15%;
+        cursor: pointer;
+        font-family: Arial, Helvetica, sans-serif;
+
+    }
+
+    .delete-red:hover{
+        background-color:red;
+        font-size: 110%;
+    }
+
+
+</style>
+
+<body>  
+<form action="/delete_multiple" method="POST"> 
+    <h3>Student Information</h3>  
+    <table>  
+        <tr>  
+            <th>Enroll-No</th>
+            <th>Name</th>  
+            <th>Email</th> 
+            <th>Country</th> 
+        </tr>  
+        
+        {% for row in rows %}  
+        
+            <tr>  
+                <td>{{row["roll"]}}</td>  
+                <td>{{row["name"]}}</td>  
+                <td>{{row["email"]}}</td>    
+                <td>{{row["country"]}}</td>
+                <td>
+                    <input type="checkbox" name="roll_ids" value="{{ row.roll }}" style="background-color: firebrick; color: white; border-radius: 10px; cursor: pointer;">
+                </td>
+            </tr>  
+        
+        {% endfor %}
+        
+        <input type="submit" name="DELETE" value="DELETE";>
+
+    </table>  
+    <br><br>  
+    
+</form>
+
+<a href="/" class="button">HOME</a>
+</body>  
+</html>  

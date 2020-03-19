@@ -53,6 +53,33 @@ def delete_record(roll_no):
         msg = "Record Deleted For Enrollment No " + roll_no + " Successfully" 
     return render_template("delete_success.html", msg = msg )
 
+@app.route("/del", methods=["POST","GET"])
+def delete_checkbox():
+    with sqlite3.connect("our_records.db") as con: 
+        con.row_factory = sqlite3.Row  
+        cur = con.cursor()
+        cur.execute("select * from students_info ")
+        rows = cur.fetchall()
+
+    return render_template("delete_checkbox.html", rows =rows)
+
+
+@app.route("/delete_multiple", methods=["POST","GET"])
+def delete_multi():
+    print('Inside delete multi')
+    with sqlite3.connect("our_records.db") as con: 
+        cur = con.cursor()
+        print('DB connected')
+        if request.method == 'POST':
+            roll_ids = request.form.getlist("roll_ids")
+            print(roll_ids)
+
+            for roll_id in roll_ids:
+                print(roll_id)
+                cur.execute("DELETE FROM students_info WHERE roll = ?", [roll_id])
+            #print(request.form.getlist('roll_ids'))
+            #return 'DONE'
+    return render_template("index.html")
 
 if __name__ == "__main__":  
     app.run(debug = True)  
