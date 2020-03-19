@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Our Records</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+
+
+<body>
+
+
+
+<ul class="topnav">   <!--ul stands for unordered list. Each element of ul is declared inside <li> tag, where li is list item-->
+  <li><a href="#home">Home</a></li>  <!--a href is used if you want to refer to some page-->
+  <div class="right">
+    <li><a href="/add">New</a></li>
+    <li><a href="/view">View</a></li>
+    <li><a href="/delete">Delete</a></li>
+  </div>
+</ul>
+
+<div class="main-image">
+  <img src="/static/clg.jpg"  > 
+</div>
+
+</body>
+
+</html>
